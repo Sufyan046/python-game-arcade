@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Hub - Play Your Favorite Games</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body class="hub-page">
+    <div class="stars-container"></div>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-gamepad"></i> <span>ARCADE HUB</span>
+        </div>
+        <div class="user-info" id="userInfo">
+            <span id="usernameDisplay">Welcome, {{ session['username'] }}</span>
+            <button onclick="logout()" class="btn-logout" title="Logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Arcade Selection -->
+        <div id="arcadeSection" class="section">
+            <div class="header">
+                <h1>SELECT YOUR CHALLENGE</h1>
+                <button class="btn-leaderboard" onclick="showLeaderboard()">
+                    <i class="fas fa-trophy"></i> Global Ranking
+                </button>
+            </div>
+            <div class="game-grid">
+                <div class="game-card" onclick="startGame('tictactoe')">
+                    <div class="game-icon neon-blue"><i class="fas fa-times"></i><i class="fas fa-circle"></i></div>
+                    <h3>Tic-Tac-Toe</h3>
+                    <p>Classic 3x3 strategy with local multiplayer.</p>
+                    <span class="difficulty">EASY</span>
+                </div>
+                <div class="game-card" onclick="startGame('guessing')">
+                    <div class="game-icon neon-purple"><i class="fas fa-question-circle"></i></div>
+                    <h3>Guess Number</h3>
+                    <p>Can you find the secret number in fewer attempts?</p>
+                    <span class="difficulty">MEDIUM</span>
+                </div>
+                <div class="game-card" onclick="startGame('quiz')">
+                    <div class="game-icon neon-green"><i class="fas fa-brain"></i></div>
+                    <h3>Quiz Master</h3>
+                    <p>Test your knowledge across different topics.</p>
+                    <span class="difficulty">HARD</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Container -->
+        <div id="gameSection" class="section hidden">
+            <div class="game-controls">
+                <button onclick="backToArcade()" class="btn-back"><i class="fas fa-chevron-left"></i> Back to Hub</button>
+                <h2 id="currentGameTitle">Game Title</h2>
+            </div>
+            <div id="gameDisplay" class="game-display glass">
+                <!-- Game content will be injected here -->
+            </div>
+        </div>
+
+        <!-- Leaderboard Modal -->
+        <div id="leaderboardModal" class="modal hidden" style="display: none;">
+            <div class="modal-content glass">
+                <span class="close" onclick="closeLeaderboard()">&times;</span>
+                <h2><i class="fas fa-trophy"></i> LEADERBOARD</h2>
+                <div id="leaderboardContent">
+                    <!-- Leaderboard data injected here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tictactoe.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/guessing.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+</body>
+</html>

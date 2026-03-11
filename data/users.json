@@ -1,0 +1,15 @@
+{
+    "sufyan": {
+        "password": "abc@123.",
+        "scores": {
+            "Tic Tac Toe": 2
+        }
+    },
+    "sufyyy": {
+        "password": "abc@123.",
+        "scores": {
+            "Tic Tac Toe": 1,
+            "Quiz Game": 3
+        }
+    }
+}
